@@ -26,7 +26,8 @@ Main.prototype.init = function() {
   this.effect = new THREE.StereoEffect(this.renderer);
 
   this.camera = new THREE.PerspectiveCamera(90, 1, 0.001, 700);
-  this.camera.position.set(0, 10, 0);
+  this.camera.position.set(0, 4, 0);
+  this.camera.lookAt(new THREE.Vector3(30, 4, 0));
   
   // Controls
 
@@ -59,6 +60,15 @@ Main.prototype.init = function() {
   this.stats.domElement.style.top = '0px';
   this.container.appendChild(this.stats.domElement);
 
+  this.createFullscreenButton();
+
+  this.animate_ = $.proxy(this.animate, this);
+
+  window.addEventListener('resize', $.proxy(this.onWindowResize, this), false);
+  setTimeout($.proxy(this.onWindowResize, this), 1);
+};
+
+Main.prototype.createFullscreenButton = function() {
   var fs = document.createElement('img');
   fs.style.left = '0';
   fs.style.bottom = '0';
@@ -70,12 +80,6 @@ Main.prototype.init = function() {
   fs.alt = 'Fullscreen';
   fs.addEventListener('click', $.proxy(this.fullscreen, this), false);
   this.container.appendChild(fs);
-
-
-  this.animate_ = $.proxy(this.animate, this);
-
-  window.addEventListener('resize', $.proxy(this.onWindowResize, this), false);
-  setTimeout($.proxy(this.onWindowResize, this), 1);
 };
 
 Main.prototype.onWindowResize = function() {

@@ -12,4 +12,8 @@ if (typeof $ == 'undefined') {
 	proxy.guid = fn.guid = fn.guid || $.guid++;
 	return proxy;
   };
+  $.copyQuat = function(to, from) {
+	to.set(from.x, from.y, from.z, from.w);
+	return to;
+  };
 }
