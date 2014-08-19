@@ -24,6 +24,7 @@ Main.prototype.init = function() {
   this.materials = new Materials(this.renderer);
 
   this.effect = new THREE.StereoEffect(this.renderer);
+  this.effect.separation = 0.6;
 
   this.camera = new THREE.PerspectiveCamera(90, 1, 0.001, 700);
   this.camera.position.set(0, 4, 0);
